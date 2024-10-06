@@ -1,4 +1,4 @@
-const Guitar = ({ text, cart, setCart }) => {
+const Guitar = ({ text, addTocart }) => {
   const { name, image, description, price, id } = text;
 
   return (
@@ -17,7 +17,7 @@ const Guitar = ({ text, cart, setCart }) => {
           <p className="fw-black text-primary fs-3">${price}</p>
           <button
             type="button"
-            onClick={() => setCart((preveCart) => [...cart, text])}
+            onClick={() => addTocart(text)}
             className="btn btn-dark w-100"
           >
             Agregar al Carrito
