@@ -7,9 +7,17 @@ function App() {
   const [data, setData] = useState(db);
   const [cart, setCart] = useState([]);
 
+  /*  aqui se usa el text o cart y se transforma en item aqui se usa el text o cart y se transforma en item */
   function addTocart(item) {
-   setCart(prevCart =>[...prevCart, item])
-    
+    const itemExists = cart.findIndex((guitar) => guitar.id === item.id);
+    if (itemExists >= 0) {
+      /* cart[itemExists].quantity += 1; */
+      console.log("Ya existe");
+    } else {
+      console.log("No existe agregandi");
+      item.quantity = 1;
+      setCart([...cart, item]);
+    }
   }
 
   return (
