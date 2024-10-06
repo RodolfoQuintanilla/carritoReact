@@ -1,6 +1,6 @@
 const Guitar = () => {
   return (
-    <div>
+    <>
       <div className="col-md-6 col-lg-4 my-4 row align-items-center">
         <div className="col-4">
           <img
@@ -21,7 +21,7 @@ const Guitar = () => {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
