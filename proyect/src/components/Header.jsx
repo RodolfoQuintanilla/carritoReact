@@ -1,9 +1,18 @@
-export default function Header({ cart }) {
-  const isEmpty = () => cart.length === 0;
+import { useMemo } from "react";
+
+export default function Header({
+  cart,
+  removeFromCart,
+  increaseQuantity,
+  decreaseQuantity,
+}) {
+  const isEmpty = useMemo(() => cart.length === 0, [cart]);
 
   const cartTotal = () =>
-    cart.reduce((total, item) => total + item.quantity * item.price, 0);
-
+    useMemo(
+      cart.reduce((total, item) => total + item.quantity * item.price, 0),
+      [cart]
+    );
 
   return (
     <header className="py-5 header">
@@ -27,7 +36,7 @@ export default function Header({ cart }) {
               />
 
               <div id="carrito" className="bg-white p-3">
-                {isEmpty() ? (
+                {isEmpty ? (
                   <p className="text-center">El carrito esta vacio</p>
                 ) : (
                   <>
@@ -54,16 +63,28 @@ export default function Header({ cart }) {
                             <td>{guitar.name}</td>
                             <td className="fw-bold">${guitar.price}</td>
                             <td className="flex align-items-start gap-4">
-                              <button type="button" className="btn btn-dark">
+                              <button
+                                type="button"
+                                onClick={() => decreaseQuantity(guitar.id)}
+                                className="btn btn-dark"
+                              >
                                 -
                               </button>
                               {guitar.quantity}
-                              <button type="button" className="btn btn-dark">
+                              <button
+                                type="button"
+                                onClick={() => increaseQuantity(guitar.id)}
+                                className="btn btn-dark"
+                              >
                                 +
                               </button>
                             </td>
                             <td>
-                              <button className="btn btn-danger" type="button">
+                              <button
+                                className="btn btn-danger"
+                                onClick={() => removeFromCart(guitar.id)}
+                                type="button"
+                              >
                                 X
                               </button>
                             </td>
@@ -73,7 +94,8 @@ export default function Header({ cart }) {
                     </table>
 
                     <p className="text-end">
-                      Total pagar: <span className="fw-bold">$ {cartTotal()}</span>
+                      Total pagar:{" "}
+                      <span className="fw-bold">$ {cartTotal}</span>
                     </p>
                   </>
                 )}
