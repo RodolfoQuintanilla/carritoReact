@@ -13,6 +13,9 @@ function App() {
     if (itemExists >= 0) {
       /* cart[itemExists].quantity += 1; */
       console.log("Ya existe");
+      const updateCart = [...cart];
+      updateCart[itemExists].quantity += 1;
+      setCart(updateCart);
     } else {
       console.log("No existe agregandi");
       item.quantity = 1;
@@ -22,7 +25,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header cart={cart} />
 
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
