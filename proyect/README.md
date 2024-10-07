@@ -1,4 +1,4 @@
-# Link: [https://app.netlify.com/sites/vermillion-kulfi-29e860/deploys/670409775a44d54333abd3f2]()
+# Link: [https://vermillion-kulfi-29e860.netlify.app/]()
 
 # React + Vite
 
