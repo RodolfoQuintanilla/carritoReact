@@ -1,14 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Guitar from "./components/Guitar";
 import Header from "./components/Header";
 import { db } from "./data/bd";
 
 function App() {
-  const [data, setData] = useState(db);
-  const [cart, setCart] = useState([]);
+
+  const initialCart =()=>{
+    const localStorageCart = localStorage.getItem('cart')
+    return localStorageCart ? JSON.parse(localStorageCart):[]
+  }
+
+  const [data] = useState(db);
+  const [cart, setCart] = useState(initialCart);
 
   const MAX_ITEMS = 5;
   const MIN_ITEMS = 1;
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   /*  aqui se usa el text o cart y se transforma en item aqui se usa el text o cart y se transforma en item */
   function addTocart(item) {
@@ -59,7 +69,7 @@ function App() {
   }
 
   function clearCart() {
-    setCart([])
+    setCart([]);
   }
 
   return (
